@@ -1,9 +1,6 @@
 #Consts
-from yarl import URL
-
 
 DOWNLOAD_FOLDER = "/home/wagui/code/waguii/twitterelectionbr/raw_data/"
-DOWNLOAD_PARTIAL_FOLDER = "/home/wagui/code/waguii/twitterelectionbr/raw_data/partial/"
 
 USER_COLUMNS = [
     "username", "displayname", "description", "verified", "created",
@@ -16,3 +13,6 @@ TWEET_COLUMNS = [
 ]
 
 DF_COLUMNS = TWEET_COLUMNS + USER_COLUMNS
+
+FORMAT_DATETIME = "%Y-%m-%d %H:%M:%S"
+FORMAT_DATE = "%Y-%m-%d"
