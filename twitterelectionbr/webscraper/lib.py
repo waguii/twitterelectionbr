@@ -16,7 +16,7 @@ def get_tweet_task(query, date, limit):
     tweets = download_tweets_by_date(query, date, limit)
     return [parse_tweet(tweet) for tweet in tweets]
 
-def get_tweets(query, init_date, end_date, limit):
+def get_tweets(query, init_date, end_date, limit, candidate):
     dates = date_range(init_date, end_date)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers = THREAD_POOL_SIZE) as executor:
@@ -31,7 +31,7 @@ def get_tweets(query, init_date, end_date, limit):
                 if len(tweets) != 0:
                     print(f'{len(tweets)} tweets encontrados para {query} em {date}')
                     #save the tweets
-                    save_tweets_by_date(tweets, date, query)
+                    save_tweets_by_date(tweets, date, query, candidate)
 
     concatenate_datasets(query)
 
@@ -44,4 +44,6 @@ if __name__ == '__main__':
     #Query config - END
 
     #download and save the tweets
-    get_tweets(query, init_date, end_date, limit)
+    #get_tweets(query, init_date, end_date, limit, )
+
+    print(ROOT_DIR)

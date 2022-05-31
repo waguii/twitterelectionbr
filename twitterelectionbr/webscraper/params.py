@@ -1,5 +1,7 @@
-#Consts
+import os
 
+#Consts
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_FOLDER = "/home/wagui/code/waguii/twitterelectionbr/raw_data/"
 
 USER_COLUMNS = [
