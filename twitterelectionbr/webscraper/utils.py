@@ -17,7 +17,7 @@ import glob
 def remove_breaklines(message):
     return message.replace("\n", " ").replace('\r', '')
 
-def save_tweets_by_date(tweets, date, query):
+def save_tweets_by_date(tweets, date, query, candidate):
 
     if len(tweets) == 0:
         return
