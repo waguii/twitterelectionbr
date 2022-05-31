@@ -1,11 +1,10 @@
 import os
-import glob
 from twitterelectionbr.webscraper.params import *
-import shutil
 import pandas as pd
 import snscrape.modules.twitter as sntwitter
 from datetime import datetime, timedelta
 from alive_progress import alive_bar
+import glob
 
 # def clear_downloaded_files():
     # for f in glob.glob(DOWNLOAD_FOLDER + '*'):
@@ -23,7 +22,7 @@ def save_tweets_by_date(tweets, date, query):
     if len(tweets) == 0:
         return
 
-    query_folder = DOWNLOAD_FOLDER + query
+    query_folder = os.path.join(DOWNLOAD_FOLDER, query)
 
     # Check whether the specified path exists or not
     isExist = os.path.exists(query_folder)
@@ -33,6 +32,11 @@ def save_tweets_by_date(tweets, date, query):
         os.makedirs(query_folder)
 
     df = pd.DataFrame(tweets, columns=DF_COLUMNS)
+
+    now = datetime.now() # current date and time
+    df['query'] = query
+    df['crawled_date'] = now.strftime("%Y-%m-%d")
+
     df.to_csv(f'{query_folder}/{date}.csv', index=False)
 
 def save_tweets(tweets, query):
@@ -98,55 +102,16 @@ def date_range(start, end):
     days = [(dstart + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(delta.days + 1)]
     return days
 
-# def download_tweets(query, init_date, end_date, limit):
-
-#     date_tweets = []
-#     total_tweets = []
-#     last_date = end_date
-#     stop_criteria = True if limit == -1 else len(total_tweets) < limit
-
-#     search_term = query +" lang:pt until:"+ end_date+ " since:" + init_date
-
-#     query_result_generator = sntwitter.TwitterSearchScraper(search_term).get_items()
-
-#     #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {last_date}]') as bar:
-#     while stop_criteria:
-#         try:
-#             content = next(query_result_generator)
-
-#             current_date = content.date.strftime(FORMAT_DATE)
-
-#             user = [
-#                 content.user.username, content.user.displayname,
-#                 remove_breaklines(content.user.description),
-#                 content.user.verified,
-#                 content.user.created.strftime(FORMAT_DATETIME),
-#                 content.user.followersCount,
-#                 content.user.friendsCount, content.user.location,
-#                 content.user.protected, content.user.profileImageUrl
-#             ]
-
-#             tweet = [
-#                 content.url, content.date.strftime(FORMAT_DATETIME),
-#                 remove_breaklines(content.content), content.id,
-#                 content.replyCount, content.retweetCount,
-#                 content.likeCount, content.quoteCount, content.lang
-#             ]
-
-#             if current_date != last_date:
-#                 print(f'partial {current_date}')
-#                 save_tweets_by_date(date_tweets, last_date, query)
-#                 total_tweets.extend(date_tweets)
-#                 date_tweets = []
-#                 last_date = current_date
-#                 #bar() #print another animated bar
-#             else:
-#                 date_tweets.append(tweet + user)
-
-#         except StopIteration:
-#             save_tweets_by_date(date_tweets, last_date, query)
-#             total_tweets.extend(date_tweets)
-#             break
-
-#     print(len(total_tweets))
-#     save_tweets(total_tweets,query)
+def concatenate_datasets(query):
+    files = os.path.join(DOWNLOAD_FOLDER, query, "*.csv")
+    #print(files)
+    file_destination = os.path.join(DOWNLOAD_FOLDER, query, query + "_total_tweets.csv")
+    #remove the old totalfile
+    ## If file exists, delete it ##
+    if os.path.isfile(file_destination):
+        os.remove(file_destination)
+    # list of merged files returned
+    files = glob.glob(files)
+    # joining files with concat and read_csv
+    df = pd.concat(map(pd.read_csv, files), ignore_index=True)
+    df.to_csv(file_destination, index=False)
