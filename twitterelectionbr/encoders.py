@@ -64,3 +64,23 @@ class CleaningEncoder(BaseEstimator, TransformerMixin):
         X_ = X_.apply(lambda x: [word for word in x if word not in (stop_words)])
 
         return X_
+
+class TimeEncoder(BaseEstimator, TransformerMixin):
+    '''
+    Transforms the date column from string to datetime object
+    '''
+
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        X_ = X.copy()
+        X_ = X_.apply(lambda x: pd.to_datetime(x))
+        X_ = pd.DataFrame(X_)
+        X_['data'] = X_['date'].dt.date
+        X_['hora'] = X_['date'].dt.time
+        X_.drop(columns = 'date', inplace=True)
+        return X
