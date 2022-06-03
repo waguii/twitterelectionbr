@@ -36,3 +36,4 @@ wordcloud
 nltk
 #CNN
 tensorflow
+spacy
