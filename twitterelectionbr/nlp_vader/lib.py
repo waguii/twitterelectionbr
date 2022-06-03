@@ -1,4 +1,5 @@
 #imports
+import gc
 import os
 import pandas as pd
 from twitterelectionbr.LeIA.leia import SentimentIntensityAnalyzer
@@ -20,11 +21,12 @@ def nlp_vader(path, column):
         for filename in filenames:
             files.append(os.path.join(dirname, filename))
 
-    for file in files:
-        datasets.append(pd.read_csv(file))
-        print(f'Dataset {file} carregado...')
+    print(files)
 
-    for dataset in datasets:
+    for file in files:
+
+        dataset  = pd.read_csv(file)
+        print(f'Dataset {file} carregado...')
 
         query = dataset['query'][0]
         filename = query + "_vader.csv"
@@ -42,6 +44,9 @@ def nlp_vader(path, column):
 
         print(f'Dataset {query} salvo.')
 
+        del [[dataset]]
+        gc.collect()
+
 
 if __name__ == '__main__':
-    nlp_vader('../../raw_data/data_remote/', 'content')
+    nlp_vader('raw_data/data_remote/', 'content')
