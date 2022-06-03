@@ -37,7 +37,7 @@ def get_tweets(query, init_date, end_date, limit, candidate):
 
 if __name__ == '__main__':
     #Query config - INIT
-    query = "Ciro Gomes"
+    query = "dilma"
     limit = -1 #no limit
     init_date = "2018-03-01" #"2014-03-01"
     end_date = "2018-10-28" #"2014-10-27"
