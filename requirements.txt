@@ -31,4 +31,6 @@ termcolor
 
 #project specific
 snscrape
-alive_progress
+#alive_progress
+wordcloud
+nltk
