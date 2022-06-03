@@ -46,6 +46,7 @@ def get_tweets(query, init_date, end_date, limit, candidate, remote=False):
 
 if __name__ == '__main__':
     #Query config - INIT
+    wagner_teste
     query = "#dilma"
     limit = -1 #no limit
     init_date = "2014-03-01" #"2014-03-01"
