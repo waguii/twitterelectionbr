@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun  4 20:39:41 2022
+# Make data base, printed on Mon Jun  6 08:57:54 2022
 
 # Variables
 
@@ -55,7 +55,7 @@ PATH = /home/wagui/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/b
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-3f81116d-a2a5-4fca-8cdd-9f59fa461616.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-ab643348-5ffc-49aa-9994-c34e7f327d04.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -67,7 +67,7 @@ PWD = /home/wagui/code/waguii/twitterelectionbr
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/11_interop
+WSL_INTEROP = /run/WSL/16_interop
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -277,12 +277,12 @@ create_bucket:
 	@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
 
 clean:
+ 
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
- 
 # automatic
 # @ := clean
 # automatic
@@ -344,6 +344,6 @@ install:
 # strcache performance: lookups = 63 / hit rate = 41%
 # hash-table stats:
 # Load=37/8192=0%, Rehash=0, Collisions=1/63=2%
-# Finished Make data base on Sat Jun  4 20:39:41 2022
+# Finished Make data base on Mon Jun  6 08:57:54 2022
 
  

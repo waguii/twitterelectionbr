@@ -200,42 +200,55 @@ def predict_gender_simple(input_path: str):
 
 def predict_gender_simple_img(img):
     """Predict the gender of the faces showing in the image"""
-    #results = []
-    # Read Input Image
-    #img = cv2.imread(input_path)
-    # resize the image, uncomment if you want to resize the image
-    #img = cv2.resize(img, (frame_width, frame_height))
-    # Take a copy of the initial image and resize it
-    frame = img.copy()
-    if frame.shape[1] > frame_width:
-        frame = image_resize(frame, width=frame_width)
-    # predict the faces
-    faces = get_faces(frame)
-    #print(faces)
-    # Loop over the faces detected
-    # for idx, face in enumerate(faces):
-    for i, (start_x, start_y, end_x, end_y) in enumerate(faces):
-        face_img = frame[start_y: end_y, start_x: end_x]
-        # image --> Input image to preprocess before passing it through our dnn for classification.
-        # scale factor = After performing mean substraction we can optionally scale the image by some factor. (if 1 -> no scaling)
-        # size = The spatial size that the CNN expects. Options are = (224*224, 227*227 or 299*299)
-        # mean = mean substraction values to be substracted from every channel of the image.
-        # swapRB=OpenCV assumes images in BGR whereas the mean is supplied in RGB. To resolve this we set swapRB to True.
-        blob = cv2.dnn.blobFromImage(image=face_img, scalefactor=1.0, size=(
-            227, 227), mean=MODEL_MEAN_VALUES, swapRB=False, crop=False)
-        # Predict Gender
-        gender_net.setInput(blob)
-        gender_preds = gender_net.forward()
-        i = gender_preds[0].argmax()
-        gender = GENDER_LIST[i]
-        gender_confidence_score = gender_preds[0][i]
 
-        # Cleanup
-        cv2.destroyAllWindows()
+    if img is None:
+        return {}
 
-        #return at first result
-        return {'gender' : gender,
-                'gender_confidence_score': gender_confidence_score}
+    # if img.shape()[0] == 0 | img.shape()[1] == 0:
+    #     print(f'Imagem de dimensoes invalidas ({img.shape()})')
+    #     return {}
+
+    try:
+        #results = []
+        # Read Input Image
+        #img = cv2.imread(input_path)
+        # resize the image, uncomment if you want to resize the image
+        #img = cv2.resize(img, (frame_width, frame_height))
+        # Take a copy of the initial image and resize it
+        frame = img.copy()
+        if frame.shape[1] > frame_width:
+            frame = image_resize(frame, width=frame_width)
+        # predict the faces
+        faces = get_faces(frame)
+        #print(faces)
+        # Loop over the faces detected
+        # for idx, face in enumerate(faces):
+        for i, (start_x, start_y, end_x, end_y) in enumerate(faces):
+            face_img = frame[start_y: end_y, start_x: end_x]
+            # image --> Input image to preprocess before passing it through our dnn for classification.
+            # scale factor = After performing mean substraction we can optionally scale the image by some factor. (if 1 -> no scaling)
+            # size = The spatial size that the CNN expects. Options are = (224*224, 227*227 or 299*299)
+            # mean = mean substraction values to be substracted from every channel of the image.
+            # swapRB=OpenCV assumes images in BGR whereas the mean is supplied in RGB. To resolve this we set swapRB to True.
+            blob = cv2.dnn.blobFromImage(image=face_img, scalefactor=1.0, size=(
+                227, 227), mean=MODEL_MEAN_VALUES, swapRB=False, crop=False)
+            # Predict Gender
+            gender_net.setInput(blob)
+            gender_preds = gender_net.forward()
+            i = gender_preds[0].argmax()
+            gender = GENDER_LIST[i]
+            gender_confidence_score = gender_preds[0][i]
+
+            # Cleanup
+            cv2.destroyAllWindows()
+
+            #return at first result
+            return {'gender' : gender,
+                    'gender_confidence_score': gender_confidence_score}
+    except Exception as e:
+        #print(str(e))
+        return {}
+
     return {}
 
 if __name__ == '__main__':
