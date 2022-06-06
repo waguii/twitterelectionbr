@@ -34,3 +34,6 @@ snscrape
 #alive_progress
 wordcloud
 nltk
+#CNN
+tensorflow
+spacy

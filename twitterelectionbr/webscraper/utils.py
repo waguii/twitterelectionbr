@@ -3,8 +3,8 @@ from twitterelectionbr.webscraper.params import *
 import pandas as pd
 import snscrape.modules.twitter as sntwitter
 from datetime import datetime, timedelta
-from alive_progress import alive_bar
 import glob
+from google.cloud import storage
 
 # def clear_downloaded_files():
     # for f in glob.glob(DOWNLOAD_FOLDER + '*'):
@@ -17,19 +17,12 @@ import glob
 def remove_breaklines(message):
     return message.replace("\n", " ").replace('\r', '')
 
-def save_tweets_by_date(tweets, date, query, candidate):
+def save_tweets_by_date(tweets, date, query, candidate, remote=False):
 
     if len(tweets) == 0:
         return
 
-    query_folder = os.path.join(DOWNLOAD_FOLDER, query)
-
-    # Check whether the specified path exists or not
-    isExist = os.path.exists(query_folder)
-
-    if not isExist:
-        # Create a new directory because it does not exist
-        os.makedirs(query_folder)
+    dyear = datetime.strptime(date, '%Y-%m-%d').date().year
 
     df = pd.DataFrame(tweets, columns=DF_COLUMNS)
 
@@ -37,7 +30,49 @@ def save_tweets_by_date(tweets, date, query, candidate):
     df['query'] = query
     df['crawled_date'] = now.strftime("%Y-%m-%d")
 
-    df.to_csv(f'{query_folder}/{date}.csv', index=False)
+    if remote:
+        file_path = "/".join(("data", str(dyear), candidate.name, query, date + ".csv"))
+
+        if not file_exists_gcp(BUCKET_NAME, file_path):
+            upload_to_gcp(df, BUCKET_NAME, file_path)
+
+    else:
+        query_folder = os.path.join(DOWNLOAD_FOLDER,str(dyear),candidate.name,query)
+        # Check whether the specified path exists or not
+        isExist = os.path.exists(query_folder)
+
+        if not isExist:
+            # Create a new directory because it does not exist
+            os.makedirs(query_folder)
+
+        df.to_csv(f'{query_folder}/{date}.csv', index=False)
+
+
+def concatenate_date_datasets(date, query, candidate, remote=False, overwrite=False):
+
+    dyear = datetime.strptime(date, '%Y-%m-%d').date().year
+
+    if remote:
+        folder_path = "/".join(("data", str(dyear), candidate.name, query))
+        file_path = "/".join((folder_path,  "total_csv.csv"))
+
+        if not file_exists_gcp(BUCKET_NAME, file_path):
+            compose_csv_files_gcp(BUCKET_NAME, folder_path, file_path)
+    else:
+        query_folder = os.path.join(DOWNLOAD_FOLDER,str(dyear),candidate.name,query)
+        files = os.path.join(query_folder, "*.csv")
+        file_destination = os.path.join(query_folder, "total_tweets.csv")
+
+        if overwrite:
+            #remove the old totalfile
+            ## If file exists, delete it ##
+            if os.path.isfile(file_destination):
+                os.remove(file_destination)
+        # list of merged files returned
+        files = glob.glob(files)
+        # joining files with concat and read_csv
+        df = pd.concat(map(pd.read_csv, files), ignore_index=True)
+        df.to_csv(file_destination, index=False)
 
 def save_tweets(tweets, query):
     query_folder = DOWNLOAD_FOLDER + query
@@ -74,6 +109,7 @@ def download_tweets_by_date(query, date, limit):
     return tweets
 
 def parse_tweet(content):
+
     user = [
         content.user.username, content.user.displayname,
         remove_breaklines(content.user.description),
@@ -102,16 +138,27 @@ def date_range(start, end):
     days = [(dstart + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(delta.days + 1)]
     return days
 
-def concatenate_datasets(query):
-    files = os.path.join(DOWNLOAD_FOLDER, query, "*.csv")
-    #print(files)
-    file_destination = os.path.join(DOWNLOAD_FOLDER, query, query + "_total_tweets.csv")
-    #remove the old totalfile
-    ## If file exists, delete it ##
-    if os.path.isfile(file_destination):
-        os.remove(file_destination)
-    # list of merged files returned
-    files = glob.glob(files)
-    # joining files with concat and read_csv
-    df = pd.concat(map(pd.read_csv, files), ignore_index=True)
-    df.to_csv(file_destination, index=False)
+
+def upload_to_gcp(df, dest_bucket_name, dest_file_name):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(dest_bucket_name)
+    blob = bucket.blob(dest_file_name)
+    blob.upload_from_string(df.to_csv(), 'text/csv')
+    print(f'DataFrame uploaded to bucket {dest_bucket_name}, file name: {dest_file_name}')
+
+def file_exists_gcp(bucket_name, file_name):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    return storage.Blob(bucket=bucket, name=file_name).exists(storage_client)
+
+def compose_csv_files_gcp(bucket_name, path, file_name):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+
+    sources = list(bucket.list_blobs(prefix=path))
+
+    destination = bucket.blob(file_name)
+    destination.content_type = "text/csv"
+    destination.compose(sources)
+
+    print(f'DataFrames concatenated of folder: {path}')
