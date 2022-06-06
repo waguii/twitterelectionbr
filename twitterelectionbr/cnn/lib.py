@@ -9,7 +9,7 @@ from urllib.error import HTTPError
 import concurrent.futures
 
 #number of threads
-THREAD_POOL_SIZE = 10
+THREAD_POOL_SIZE = 15
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -57,6 +57,16 @@ def transform_dataset(file):
     filename = os.path.splitext(os.path.basename(file))[0]
     dataset = pd.read_csv(file)
 
+    middle = int(dataset.shape[0] / 2)
+
+    dfs = np.split(dataset, [middle], axis=0)
+
+    print(f'size: {len(dfs)} ')
+
+    dataset = dfs[0]
+
+    #dataset = dataset.iloc[:, :middle]
+
     print(f'Realizando analise de genero em {file}...')
 
     dataset_unique = dataset.drop_duplicates(subset=['username'])
@@ -97,7 +107,7 @@ def transform_datasets(path, output_path):
 
     print(f'Arquivos encontrados: {files}')
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers = 5) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers = 1) as executor:
         future_to_file = {executor.submit(transform_dataset, file): file for file in files}
         for future in concurrent.futures.as_completed(future_to_file):
             file = future_to_file[future]
