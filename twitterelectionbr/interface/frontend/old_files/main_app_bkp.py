@@ -5,7 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-v
 
 st.markdown("# Main page 🎈")
 st.sidebar.markdown("# Main page 🎈")
