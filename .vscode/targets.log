@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun  3 12:43:44 2022
+# Make data base, printed on Tue Jun  7 07:54:19 2022
 
 # Variables
 
@@ -55,7 +55,7 @@ PATH = /home/wagui/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/b
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-c4d7a0f5-41d6-4325-84a0-91ea861f7bfc.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-77e3579b-cd2f-4485-8325-f488a02614bf.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -159,7 +159,7 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 2064, inode 247150): 18 files, no impossibilities.
+# . (device 2096, inode 247150): 18 files, no impossibilities.
 
 # 18 files, no impossibilities in 1 directories.
 
@@ -277,8 +277,8 @@ create_bucket:
 	@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
 
 clean:
-#  Implicit rule search has not been done.
  
+#  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
 #  File has been updated.
@@ -344,6 +344,6 @@ install:
 # strcache performance: lookups = 63 / hit rate = 41%
 # hash-table stats:
 # Load=37/8192=0%, Rehash=0, Collisions=1/63=2%
-# Finished Make data base on Fri Jun  3 12:43:44 2022
+# Finished Make data base on Tue Jun  7 07:54:19 2022
 
  
