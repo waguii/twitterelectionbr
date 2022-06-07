@@ -1,5 +1,2 @@
-streamlit:
-	streamlit run app.py
-
-streamlit_thierry:
-	streamlit run my_app/main_app.py
+run_frontend:
+	streamlit run frontend/Home.py
