@@ -9,7 +9,7 @@ from urllib.error import HTTPError
 import concurrent.futures
 
 #number of threads
-THREAD_POOL_SIZE = 15
+THREAD_POOL_SIZE = 20
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -57,15 +57,11 @@ def transform_dataset(file):
     filename = os.path.splitext(os.path.basename(file))[0]
     dataset = pd.read_csv(file)
 
-    middle = int(dataset.shape[0] / 2)
-
-    dfs = np.split(dataset, [middle], axis=0)
-
-    print(f'size: {len(dfs)} ')
-
-    dataset = dfs[0]
-
-    #dataset = dataset.iloc[:, :middle]
+    # middle = int(dataset.shape[0] / 4)
+    # dfs = np.split(dataset, [middle], axis=0)
+    # print(f'size: {len(dfs)} ')
+    # dataset = dfs[0]
+    # #dataset = dataset.iloc[:, :middle]
 
     print(f'Realizando analise de genero em {file}...')
 
@@ -122,4 +118,4 @@ def transform_datasets(path, output_path):
 
 
 if __name__ == '__main__':
-    transform_datasets('raw_data/data/totals/', 'raw_data/data_cnn/cnn_results/')
+    transform_datasets('raw_data/data/totals/split/', 'raw_data/data_cnn/cnn_results/')

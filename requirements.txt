@@ -38,3 +38,4 @@ nltk
 tensorflow
 spacy
 streamlit
+geopy
