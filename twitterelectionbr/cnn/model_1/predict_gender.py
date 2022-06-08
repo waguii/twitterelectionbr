@@ -239,12 +239,16 @@ def predict_gender_simple_img(img):
             gender = GENDER_LIST[i]
             gender_confidence_score = gender_preds[0][i]
 
+            # gender_confidence_score_f = float("{:.3f}".format(gender_confidence_score))
+
+            #print(float(gender_confidence_score))
+            #print(gender_confidence_score_f)
             # Cleanup
             cv2.destroyAllWindows()
 
             #return at first result
             return {'gender' : gender,
-                    'gender_confidence_score': gender_confidence_score}
+                    'gender_confidence_score': float(gender_confidence_score)}
     except Exception as e:
         #print(str(e))
         return {}

@@ -8,12 +8,12 @@ BUCKET_NAME = "twiiter-effect-in-elections-bucket"
 
 USER_COLUMNS = [
     "username", "displayname", "description", "verified", "created",
-    "followers_count", "friends_count", "location", "protected", "profile_img"
+    "followersCount", "friendsCount", "location", "protected", "profile_img"
 ]
 
 TWEET_COLUMNS = [
-    "url", "date", "content", "id", "reply_count", "retweet_count",
-    "like_count", "quote_count", "lang"
+    "url", "date", "content", "id", "replyCount", "retweetCount",
+    "likeCount", "quoteCount", "lang"
 ]
 
 DF_COLUMNS = TWEET_COLUMNS + USER_COLUMNS

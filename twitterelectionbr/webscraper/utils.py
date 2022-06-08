@@ -5,6 +5,7 @@ import snscrape.modules.twitter as sntwitter
 from datetime import datetime, timedelta
 import glob
 from google.cloud import storage
+from datetime import date
 
 # def clear_downloaded_files():
     # for f in glob.glob(DOWNLOAD_FOLDER + '*'):
@@ -107,6 +108,32 @@ def download_tweets_by_date(query, date, limit):
             break
     # print(len(tweets))
     return tweets
+
+def download_lastest_tweets_by_profile(profile, limit = 15):
+    tweets = []
+    #stop_criteria = True if limit == -1 else len(tweets) < limit
+
+    today = date.today().strftime("%Y-%m-%d")
+    d_date = (date.today() - timedelta(days=14)).strftime("%Y-%m-%d") #date +14 days
+
+    search_term = profile +" until:"+ today + " since:" + d_date
+    #print(search_term)
+    #download tweets
+    query_result_generator = sntwitter.TwitterSearchScraper(search_term).get_items()
+    #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {date}]') as bar:
+    while len(tweets) < limit:
+        try:
+            tweets.append(next(query_result_generator))
+        except StopIteration:
+            break
+    # print(len(tweets))
+    return tweets
+
+def profile_info(username):
+
+    userScraper = sntwitter.TwitterUserScraper(username)
+
+    return userScraper._get_entity()
 
 def parse_tweet(content):
 
