@@ -90,7 +90,7 @@ def analysis_twiitter_user(username):
 
     user_tweets_df = get_user_tweets_df(username)
 
-    print(user_tweets_df.loc[0])
+    #print(user_tweets_df.loc[0])
 
     nlp_result = get_tweets_nlp(user_tweets_df)
 

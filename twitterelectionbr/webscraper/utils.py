@@ -109,7 +109,7 @@ def download_tweets_by_date(query, date, limit):
     # print(len(tweets))
     return tweets
 
-def download_lastest_tweets_by_profile(profile, limit = 15):
+def download_lastest_tweets_by_profile(profile, limit = 100):
     tweets = []
     #stop_criteria = True if limit == -1 else len(tweets) < limit
 

@@ -2,8 +2,10 @@
 from unittest import result
 import cv2
 import numpy as np
+import os
 
-BASE = '/home/wagui/code/waguii/twitterelectionbr/twitterelectionbr/cnn/model_1/'
+BASE = os.path.dirname(__file__) + '/'
+#BASE = '/home/wagui/code/waguii/twitterelectionbr/twitterelectionbr/cnn/model_1/'
 # The gender model architecture
 # https://drive.google.com/open?id=1W_moLzMlGiELyPxWiYQJ9KFaXroQ_NFQ
 GENDER_MODEL = BASE + 'weights/deploy_gender.prototxt'
