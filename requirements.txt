@@ -35,7 +35,8 @@ snscrape
 wordcloud
 nltk
 #CNN
-tensorflow
 spacy
 streamlit
 geopy
+uvicorn
+fastapi

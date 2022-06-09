@@ -24,3 +24,17 @@ def team_card(name, location, image_url, linkedin, slack, github):
                 </ul>
             </div>""",
     unsafe_allow_html=True)
+
+def profile_card(profile):
+    st.markdown(f"""
+                <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+                    <div class="bg-dark card p-4">
+                        <div class=" image d-flex flex-column justify-content-center align-items-center">
+                            <button class="btn btn-secondary"> <img src="{profile['profileImageUrl']}" height="100" width="100" /></button> <span class="name mt-3">{profile['displayname']}</span> <span class="idd">@{profile['username']}</span>
+                            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{profile['followersCount']} <span class="follow">Followers</span></span> </div>
+                            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{profile['mediaCount']} <span class="follow">Posts</span></span> </div>
+                            <div class="text mt-3"> <span>{profile['description']}</span> </div>
+                            <div class=" px-2 rounded mt-4 date "> <span class="join">Joined {profile['created']}</span> </div>
+                        </div>
+                    </div>
+                </div>""", unsafe_allow_html=True)

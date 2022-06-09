@@ -49,4 +49,4 @@ def nlp_vader(path, column):
 
 
 if __name__ == '__main__':
-    nlp_vader('raw_data/data_remote/', 'content')
+    nlp_vader('raw_data/data/2014/AECIO_NEVES/totals/', 'content')
