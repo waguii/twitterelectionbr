@@ -12,5 +12,5 @@ def main():
 
 
     components.iframe('https://app.powerbi.com/view?r=eyJrIjoiODc3N2RhNDctM2NkOS00YTEyLThkMjQtOTdkMTcyYjU0MjkzIiwidCI6IjU3YjJhZDI2LWM4YTgtNDNlOC1iMTk4LWM4NzU4YzU1MDQyOSJ9',
-                    height = 600)
+                    height = 650)
 main()
