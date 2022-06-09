@@ -22,7 +22,7 @@ def main():
     st.markdown("<h1 style='text-align: center; color:#2E2E2E ;'>Twiitter Sentiment Analysis</h1>", unsafe_allow_html=True)
     #WRITE THE CODE BELOW
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-    
+
     col1, col2 = st.columns(2)
 
     with col1:
@@ -30,61 +30,67 @@ def main():
         rel_path = '../static/dilma_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Numbers of tweet written for Dilma by the types of sentiments', use_column_width='auto')
+        st.image(image, caption='Amount of tweets about Dilma divided by sentiment', use_column_width='auto')
         st.markdown("<h3>Dilma received more negative tweets but the number of positive tweets is still higher than Aécio's</h3>", unsafe_allow_html=True)
-        
+
         rel_path = '../static/dilma_numberDailyTweet.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Daily numbers of tweet written for Dilma', use_column_width='auto')
-        st.markdown("<h3>Dilma is active in Tweeter along the year of elections</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Daily tweets about Dilma', use_column_width='auto')
+        st.markdown("<h3>Peaks of tweets about Dilma around the period in which occured the World Cup and increase near the elections </h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_avgTweetsbyUser.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Average number of tweets by user', use_column_width='auto')
-        st.markdown("<h3>Candidates are commented only once by most of users during election year</h3>", unsafe_allow_html=True)
-        
+        st.markdown("<h3>Great majority of users only mention Dilma once</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_userTweetedMost.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Top 20 Users tweeted most for Dilma', use_column_width='auto')
-        st.markdown("<h3>Dilma is commented mostly by institutional accounts</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Top 20 Users who mentioned Dilma the most', use_column_width='auto')
+        st.markdown("<h3>Dilma is mentioned mostly by institutional accounts</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_likesForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total likes given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Positive and negative tweets about Dilma received equal amounts of likes</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of likes divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>Positive and negative tweets about Dilma received an equal amount of likes</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_replyForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total number of reply given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Positive and Negative tweets about Dilma creates almost equal amount of discussions </h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of replies divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>Positive and negative tweets about Dilma are equally discussed</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_retweetForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total number of retweet by sentiments', use_column_width='auto')
-        st.markdown("<h3>Positive tweets about Dilma are circulated more than the negative one's</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of retweeted posts divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>Positive tweets about Dilma have a higher circulation than the negatives</h3>", unsafe_allow_html=True)
+
+        rel_path = '../static/dilma_gender.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, caption='Users by machine-identified gender', use_column_width='auto')
+        st.markdown("<h3>The percentage of male users talking about Dilma is greater than female</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_sentimentsOvertime.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Average sentiments over the period', use_column_width='auto')
-        st.markdown("<h3>Average sentiments about Dilma is usually negative but differs less along the year</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Average sentiment throughout the year up to the election', use_column_width='auto')
+        st.markdown("<h3>The average sentiment about Dilma is negative, but with lower variance, and with a positive peak in the end</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_wordCloudNegativo.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Word cloud of negative tweets for Dilma', use_column_width='auto')
-        st.markdown("<h3>The world cup and the Petrobras scandal dominate the negative tweets about Dilma</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Negative word cloud about Dilma', use_column_width='auto')
+        st.markdown("<h3>The World Cup and the Petrobras scandal dominate the negative tweets about Dilma</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/dilma_wordCloudPositivo.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Word cloud of positivo tweets for Dilma', use_column_width='auto')
+        st.image(image, caption='Positive word cloud about Dilma', use_column_width='auto')
         st.markdown("<h3>Positive tweets about Dilma points out the legacy of PT</h3>", unsafe_allow_html=True)
 
 
@@ -93,63 +99,69 @@ def main():
         rel_path = '../static/aecio_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Numbers of tweet written for Aécio by the types of sentiments', use_column_width='auto')
-        st.markdown("<h3>The number of tweets about Aécio is less than the Dilma's but positive and negative tweets are balanced</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of tweets about Aécio divided by sentiment', use_column_width='auto')
+        st.markdown("<h3>Less people mentioned Aécio, but there is a balance between positive and negative tweets</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_numberDailyTweet.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Daily numbers of tweet written for Aécio', use_column_width='auto')
-        st.markdown("<h3>Tweeters about Aécio jumps up just before the elections </h3>", unsafe_allow_html=True)
+        st.image(image, caption='Daily tweets about Aécio', use_column_width='auto')
+        st.markdown("<h3>People started mentioning Aécio more towards the end of the campaign.</h3>", unsafe_allow_html=True)
 
-        
+
         rel_path = '../static/aecio_avgTweetsbyUser.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Average number of tweets by user', use_column_width='auto')
-        st.markdown("<h3>Candidates are commented only once by most of users during election year</h3>", unsafe_allow_html=True)
-        
+        st.markdown("<h3>Great majority of users only mention Aécio once</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_userTweetedMost.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Top 20 Users tweeted most for Aécio', use_column_width='auto')
-        st.markdown("<h3>Aécio is commented mostly by personal accounts</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Top 20 Users who mentioned Aécio the most', use_column_width='auto')
+        st.markdown("<h3>Aécio is mentioned mostly by personnal accounts</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_likesForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total likes given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Aécio received likes more than the positives one's</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of likes divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>Negative tweets about Aécio received more likes than the positives</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_replyForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total number of reply given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Aécio are discussed more than the positives one's</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of replies divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>People react more to negative tweets about Aécio</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_retweetForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Total number of retweet by sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Aécio are circulated more than the positives one's</h3>", unsafe_allow_html=True)
-        
+        st.image(image, caption='Amount of retweeted posts divided by general sentiment', use_column_width='auto')
+        st.markdown("<h3>Negative tweets about Dilma have a higher circulation than the positives</h3>", unsafe_allow_html=True)
+
+        rel_path = '../static/aecio_gender.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, caption='Users by machine-identified gender', use_column_width='auto')
+        st.markdown("<h3>The percentage of male users talking about Aécio is greater than female</h3>", unsafe_allow_html=True)
+
         rel_path = '../static/aecio_sentimentsOvertime.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Average sentiments over the period', use_column_width='auto')
-        st.markdown("<h3>Average sentiments about Aécio is not stable and differs much along the year</h3>", unsafe_allow_html=True)
-        
-        
+        st.image(image, caption='Average sentiment throughout the year up to the election', use_column_width='auto')
+        st.markdown("<h3>The sentiment about Aécio has more variance, representing more extrem opinions, with a negative peak in the end</h3>", unsafe_allow_html=True)
+
+
         rel_path = '../static/aecio_wordCloudNegativo.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Word cloud of negative tweets for Aécio', use_column_width='auto')
+        st.image(image, caption='Negative word cloud about Aécio', use_column_width='auto')
         st.markdown("<h3>Discussion between political parties dominates the negative tweets about Aécio</h3>", unsafe_allow_html=True)
-        
+
         rel_path = '../static/aecio_wordCloudPositivo.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Word cloud of positivo tweets for Aécio', use_column_width='auto')
-        st.markdown("<h3>Positive tweets about Aécio looks for the support of Marina in the second round</h3>", unsafe_allow_html=True)
+        st.image(image, caption='Positive word cloud about Aécio', use_column_width='auto')
+        st.markdown("<h3>The support of ex-candidate Marina stands out in the positive tweets</h3>", unsafe_allow_html=True)
 
 main()
