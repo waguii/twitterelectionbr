@@ -11,6 +11,6 @@ def main():
     st.title("Candidates activity on Twitter during campaign")
 
 
-    components.iframe('https://app.powerbi.com/view?r=eyJrIjoiMTYyYTViNTgtZTBhNC00YmFmLTljZTYtM2M4YTkwOTFkNTI2IiwidCI6IjU3YjJhZDI2LWM4YTgtNDNlOC1iMTk4LWM4NzU4YzU1MDQyOSJ9',
+    components.iframe('https://app.powerbi.com/view?r=eyJrIjoiODc3N2RhNDctM2NkOS00YTEyLThkMjQtOTdkMTcyYjU0MjkzIiwidCI6IjU3YjJhZDI2LWM4YTgtNDNlOC1iMTk4LWM4NzU4YzU1MDQyOSJ9',
                     height = 600)
 main()
