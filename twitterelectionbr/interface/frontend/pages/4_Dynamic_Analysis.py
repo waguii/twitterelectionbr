@@ -80,6 +80,5 @@ def main():
         with col2:
             profile_card(profile)
 
-
 main_css()
 main()
