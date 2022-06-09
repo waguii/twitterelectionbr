@@ -119,19 +119,19 @@ def main():
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Total likes given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Bolsonaro received likes more than the positives ones</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Negative tweets about Bolsonaro received likes more than the positives one's</h3>", unsafe_allow_html=True)
         
         rel_path = '../static/bolsonaro_replyForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Total number of reply given to sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Bolsonaro are discussed more than the positives ones</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Negative tweets about Bolsonaro are discussed more than the positives one's</h3>", unsafe_allow_html=True)
         
         rel_path = '../static/bolsonaro_retweetForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Total number of retweet by sentiments', use_column_width='auto')
-        st.markdown("<h3>Negative tweets about Bolsonaro are retweeted more than the positives ones</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Negative tweets about Bolsonaro are circulated more than the positives one's</h3>", unsafe_allow_html=True)
         
         rel_path = '../static/bolsonaro_sentimentsOvertime.png'
         abs_file_path = os.path.join(script_dir, rel_path)
