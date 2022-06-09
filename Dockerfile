@@ -8,3 +8,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 CMD uvicorn twitterelectionbr.interface.api.twiitter:app --host 0.0.0.0
+#CMD streamlit run twitterelectionbr/interface/frontend/Home.py

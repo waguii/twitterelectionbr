@@ -1,7 +1,7 @@
 import os
 
 
-def split(filename, chunk_size=120000):
+def split(filename, chunk_size=15000):
     def write_chunk(part, lines):
         with open('/home/wagui/code/waguii/twitterelectionbr/raw_data/data/totals/split/data_part_'+ str(part) +'.csv', 'w') as f_out:
             f_out.write(header)

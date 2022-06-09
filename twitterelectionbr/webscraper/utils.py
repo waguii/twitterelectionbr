@@ -109,15 +109,35 @@ def download_tweets_by_date(query, date, limit):
     # print(len(tweets))
     return tweets
 
-def download_lastest_tweets_by_profile(profile, limit = 100):
+def download_lastest_tweets_to_profile(profile, limit = 100):
     tweets = []
     #stop_criteria = True if limit == -1 else len(tweets) < limit
 
-    today = date.today().strftime("%Y-%m-%d")
+    today = (date.today()+timedelta(days=1)).strftime("%Y-%m-%d")
     d_date = (date.today() - timedelta(days=14)).strftime("%Y-%m-%d") #date +14 days
 
-    search_term = profile +" until:"+ today + " since:" + d_date
-    #print(search_term)
+    search_term = "(to:"+profile+")"
+    print(search_term)
+    #download tweets
+    query_result_generator = sntwitter.TwitterSearchScraper(search_term).get_items()
+    #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {date}]') as bar:
+    while len(tweets) < limit:
+        try:
+            tweets.append(next(query_result_generator))
+        except StopIteration:
+            break
+    # print(len(tweets))
+    return tweets
+
+def download_lastest_tweets_from_profile(profile, limit = 100):
+    tweets = []
+    #stop_criteria = True if limit == -1 else len(tweets) < limit
+
+    today = (date.today()+timedelta(days=1)).strftime("%Y-%m-%d")
+    d_date = (date.today() - timedelta(days=14)).strftime("%Y-%m-%d") #date +14 days
+
+    search_term = "(from:"+profile+")"
+    print(search_term)
     #download tweets
     query_result_generator = sntwitter.TwitterSearchScraper(search_term).get_items()
     #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {date}]') as bar:
@@ -130,10 +150,17 @@ def download_lastest_tweets_by_profile(profile, limit = 100):
     return tweets
 
 def profile_info(username):
+    result = None
+    try:
+        userScraper = sntwitter.TwitterUserScraper(username)
+        result = userScraper._get_entity()
 
-    userScraper = sntwitter.TwitterUserScraper(username)
+        result.created = result.created.strftime("%m/%d/%Y %H:%M:%S")
+        result.profileImageUrl= result.profileImageUrl.replace('_normal', '_400x400')
+    except:
+        pass
 
-    return userScraper._get_entity()
+    return result
 
 def parse_tweet(content):
 

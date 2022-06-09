@@ -1,7 +1,7 @@
 import imutils
 from twitterelectionbr.cnn.model_1.predict_gender import predict_gender_simple_img
 from twitterelectionbr.geolocation.lib import find_location_simple
-from twitterelectionbr.webscraper.utils import download_lastest_tweets_by_profile, profile_info
+from twitterelectionbr.webscraper.utils import *
 from twitterelectionbr.webscraper.params import *
 from twitterelectionbr.interface.api.utils import *
 from urllib.error import HTTPError
@@ -29,11 +29,10 @@ def get_nlp_vader_df(df_user_tweets):
     df_user_tweets['created_at_r']=df_user_tweets['date'].dt.strftime('%Y-%m-%d %H')
     df_user_tweets['created_at_r2']=df_user_tweets['date'].dt.strftime('%m-%d')
 
-    return df_user_tweets[['date', 'created_at_r', 'created_at_r2', 'compound', 'sentiment']].to_dict('list')
+    return df_user_tweets[['date', 'created_at_r', 'created_at_r2', 'compound', 'sentiment', 'direction']].to_dict('list')
 
 def data_analysis(df_user_tweets):
     pass
-
 
 def get_tweets_nlp(df_user_tweets):
     #do nlp using vader
@@ -42,11 +41,18 @@ def get_tweets_nlp(df_user_tweets):
 
 def get_user_tweets_df(username):
     #download tweets
-    tweets = download_lastest_tweets_by_profile(username)
+    tweets_to = download_lastest_tweets_to_profile(username)
+    tweets_from = download_lastest_tweets_from_profile(username)
     #print quantity of tweets crawled
-    print(f'{len(tweets)} encontrados para {username}')
+    #print(f'{len(tweets)} encontrados para {username}')
     #transform to dataframe
-    return pd.DataFrame(tweets, columns=DF_COLUMNS)
+    df_to = pd.DataFrame(tweets_to, columns=DF_COLUMNS)
+    df_from = pd.DataFrame(tweets_from, columns=DF_COLUMNS)
+
+    df_to['direction'] = 'to'
+    df_from['direction'] = 'from'
+
+    return pd.concat([df_to, df_from], ignore_index=True)
 
 def get_tweets_words(df_user_tweets):
     result = df_user_tweets.content.apply(clean_tweet)
@@ -77,12 +83,15 @@ def get_tweets_detail(df_user_tweets):
         'like_count' : like_count
     }
 
+def dataframe_to_json(dataframe):
+    return dataframe.to_json()
 
 def analysis_twiitter_user(username):
 
     profile = profile_info(username)
 
-    profile.created = profile.created.strftime("%m/%d/%Y, %H:%M:%S")
+    if profile is None:
+        return {'error' : "Twiiter profile not found"}
 
     cnn_result = analyse_img_url(profile.profileImageUrl)
 
@@ -90,7 +99,7 @@ def analysis_twiitter_user(username):
 
     user_tweets_df = get_user_tweets_df(username)
 
-    #print(user_tweets_df.loc[0])
+    user_tweets_df_json = dataframe_to_json(user_tweets_df)
 
     nlp_result = get_tweets_nlp(user_tweets_df)
 
@@ -108,5 +117,6 @@ def analysis_twiitter_user(username):
         'tweets_analysis' : {
             'nlp' : nlp_result,
             'words': words_result
-        }
+        },
+        'raw': user_tweets_df_json
     }
