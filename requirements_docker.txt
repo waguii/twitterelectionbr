@@ -19,3 +19,5 @@ google-cloud-storage
 joblib
 scikit-learn
 wordcloud
+plotly
+geopy
