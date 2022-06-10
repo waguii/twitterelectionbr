@@ -38,7 +38,7 @@ def main():
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Daily tweets about Dilma', use_column_width='auto')
-        st.markdown("<h3>Peaks of tweets about Dilma around the period in which occured the World Cup and increase near the elections </h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Peaks of tweets about Dilma around the World Cup and increase near the elections </h3>", unsafe_allow_html=True)
 
         rel_path = '../static/dilma_avgTweetsbyUser.png'
         abs_file_path = os.path.join(script_dir, rel_path)
@@ -50,7 +50,7 @@ def main():
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Top 20 Users who mentioned Dilma the most', use_column_width='auto')
-        st.markdown("<h3>Dilma is mentioned mostly by institutional accounts</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Dilma is mostly mentioned by institutional accounts</h3>", unsafe_allow_html=True)
 
         rel_path = '../static/dilma_likesForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
@@ -120,7 +120,7 @@ def main():
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
         st.image(image, caption='Top 20 Users who mentioned Aécio the most', use_column_width='auto')
-        st.markdown("<h3>Aécio is mentioned mostly by personnal accounts</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Aécio is mostly mentioned by personnal accounts</h3>", unsafe_allow_html=True)
 
         rel_path = '../static/aecio_likesForSentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)

@@ -189,7 +189,7 @@ def main():
         profile = st.session_state.results['profile']
         profile_analysis = st.session_state.results['profile_analysis']
         tweets_analysis = st.session_state.results['tweets_analysis']
-        raw_data = st.session_state.results['raw']
+       # raw_data = st.session_state.results['raw']
         detail = st.session_state.results['detail']
 
         with col1:

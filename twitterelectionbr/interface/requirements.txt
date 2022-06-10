@@ -21,3 +21,5 @@ google-cloud-storage
 termcolor
 uvicorn
 fastapi
+wordcloud
+plotly
