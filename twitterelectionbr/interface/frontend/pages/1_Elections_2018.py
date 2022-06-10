@@ -16,11 +16,12 @@ Title_html = """
 
     </style> """
 
+st.set_page_config(layout="wide")
 
 def main():
-    st.set_page_config(layout="wide")
+
+    st.markdown("<h1 style='text-align: center;'>2018 Elections Analysis</h1>", unsafe_allow_html=True)
     st.markdown(Title_html, unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color:#2E2E2E ;'>Twiitter Sentiment Analysis</h1>", unsafe_allow_html=True)
     #WRITE THE CODE BELOW
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
 
@@ -163,4 +164,5 @@ def main():
         st.image(image, caption='Positive word cloud about Bolsonaro', use_column_width='auto')
         st.markdown("<h3>The majority of positive comments about Bolsonaro are about his military and religious background</h3>", unsafe_allow_html=True)
 
+main_css()
 main()
