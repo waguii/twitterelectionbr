@@ -157,9 +157,9 @@ def analysis_twiitter_user(username, locations_dic, locations_file, images_cache
 
     nlp_result = get_tweets_nlp(user_tweets_df)
 
-    cnn_result = get_tweets_cnn(user_tweets_df, images_cache)
+    cnn_result = None #get_tweets_cnn(user_tweets_df, images_cache)
 
-    geo_result = get_tweets_geo(user_tweets_df, locations_dic, locations_file)
+    geo_result = None #get_tweets_geo(user_tweets_df, locations_dic, locations_file)
 
     words_result = get_tweets_words(user_tweets_df)
 
