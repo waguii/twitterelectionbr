@@ -38,3 +38,12 @@ def profile_card(profile):
                         </div>
                     </div>
                 </div>""", unsafe_allow_html=True)
+
+def count_card(info, label, type):
+    st.markdown(f"""<div class="container d-flex flex-row justify-content-center align-items-center mt-3">
+                            <div class="card-counter {type} col-md-7">
+                                <i class="fa fa-code-fork"></i>
+                                <span class="count-numbers">{info}</span>
+                                <span class="count-name">{label}</span>
+                            </div>
+                        </div>""", unsafe_allow_html=True)

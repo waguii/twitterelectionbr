@@ -18,3 +18,4 @@ gcsfs
 google-cloud-storage
 joblib
 scikit-learn
+wordcloud
