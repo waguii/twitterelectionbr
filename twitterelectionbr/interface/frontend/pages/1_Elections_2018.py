@@ -101,7 +101,7 @@ def main():
         rel_path = '../static/bolsonaro_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
-        st.image(image, caption='Amount of tweets about Bolsonaro divided by sentiment', use_column_width='auto')
+        st.image(image, caption='Amount of tweets about Bolsonar/o divided by sentiment', use_column_width='auto')
         st.markdown("<h3>In general, most of the tweets about Bolsonaro throughout the year are positive</h3>", unsafe_allow_html=True)
 
         rel_path = '../static/bolsonaro_numberDailyTweet.png'
