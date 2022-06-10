@@ -29,7 +29,7 @@ def custom_css():
 }</style>""", unsafe_allow_html=True)
 
 def main():
-    st.markdown("<h1 style='text-align: center; color: white;'>About US</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>The team</h1>", unsafe_allow_html=True)
     #WRITE THE CODE BELOW
 
     col1, col2, col3 = st.columns(3)
