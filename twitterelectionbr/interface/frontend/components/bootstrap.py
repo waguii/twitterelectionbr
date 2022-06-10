@@ -14,21 +14,21 @@ def card(title, text, image):
 
 def team_card(name, location, image_url, linkedin, slack, github):
     st.markdown(f"""
-                 <div class="bg-dark rounded shadow-sm py-5 px-4 text-center">
-                 <img src="{image_url}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">{name}</h5><span class="small text-uppercase text-muted">{location}</span>
-                <ul class="social mb-0 list-inline mt-3">
-                    <li class="list-inline-item"><a href="{slack}" class="social-link"><i class="fa fa-slack"></i></a></li>
-                    <li class="list-inline-item"><a href="{github}" class="social-link"><i class="fa fa-github"></i></a></li>
-                    <li class="list-inline-item"><a href="{linkedin}" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>""",
+                 <div class="rounded shadow-sm py-5 px-4 text-center">
+                    <img src="{image_url}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">{name}</h5><span class="small text-uppercase text-muted">{location}</span>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item"><a href="{slack}" class="social-link"><i class="fa fa-slack"></i></a></li>
+                        <li class="list-inline-item"><a href="{github}" class="social-link"><i class="fa fa-github"></i></a></li>
+                        <li class="list-inline-item"><a href="{linkedin}" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                 </div>""",
     unsafe_allow_html=True)
 
 def profile_card(profile):
     st.markdown(f"""
                 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-                    <div class="bg-dark card p-4">
+                    <div class="card p-4">
                         <div class=" image d-flex flex-column justify-content-center align-items-center">
                             <button class="btn btn-secondary"> <img src="{profile['profileImageUrl']}" height="100" width="100" /></button> <span class="name mt-3">{profile['displayname']}</span> <span class="idd">@{profile['username']}</span>
                             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{profile['followersCount']} <span class="follow">Followers</span></span> </div>
@@ -38,3 +38,12 @@ def profile_card(profile):
                         </div>
                     </div>
                 </div>""", unsafe_allow_html=True)
+
+def count_card(info, label, type):
+    st.markdown(f"""<div class="container d-flex flex-row justify-content-center align-items-center mt-3">
+                            <div class="card-counter {type} col-md-7">
+                                <i class="fa fa-code-fork"></i>
+                                <span class="count-numbers">{info} %</span>
+                                <span class="count-name">{label}</span>
+                            </div>
+                        </div>""", unsafe_allow_html=True)
