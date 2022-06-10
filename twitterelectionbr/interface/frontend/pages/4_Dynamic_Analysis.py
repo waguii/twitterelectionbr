@@ -176,7 +176,7 @@ def plot_geo_map(df_json):
 
 def main():
     if 'results' not in st.session_state:
-        st.markdown("<h1 style='text-align: center;'>Candidate analysis</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>Quick person analysis</h1>", unsafe_allow_html=True)
         st.text_input(key='username', label='', placeholder='Type a Twitter username to look up their stats.', on_change=search)
         if 'results_error' in st.session_state:
             st.error(st.session_state.results_error['error'])
