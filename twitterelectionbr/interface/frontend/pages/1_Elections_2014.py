@@ -27,6 +27,7 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
+
         st.markdown("<h1 style='text-align: center; color: #FD2B49;'>Dilma Rousseff</h1>", unsafe_allow_html=True)
         rel_path = '../static/dilma_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)

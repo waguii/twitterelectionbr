@@ -68,7 +68,8 @@ def custom_css():
     opacity: 0.5;
     display: block;
     font-size: 18px;
-  }</style>""", unsafe_allow_html=True)
+  }
+    </style>""", unsafe_allow_html=True)
 
 def clear_results():
     # Delete all the items in Session state
