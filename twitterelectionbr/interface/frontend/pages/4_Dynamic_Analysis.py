@@ -176,7 +176,7 @@ def plot_geo_map(df_json):
 
 def main():
     if 'results' not in st.session_state:
-        st.markdown("<h1 style='text-align: center;'>Quick person analysis</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>Quick personal analysis</h1>", unsafe_allow_html=True)
         st.text_input(key='username', label='', placeholder='Type a Twitter username to look up their stats.', on_change=search)
         if 'results_error' in st.session_state:
             st.error(st.session_state.results_error['error'])
@@ -201,13 +201,13 @@ def main():
         with col2:
             profile_card(profile)
 
-            nlp_total = detail['sentiment_counts']['pos'] + \
-                        detail['sentiment_counts']['neg'] + \
-                        detail['sentiment_counts']['neu']
+            nlp_total = detail['sentiment_counts'].get('pos', 0) + \
+                        detail['sentiment_counts'].get('neg', 0) + \
+                        detail['sentiment_counts'].get('neu', 0)
 
-            percentage_pos = round(detail['sentiment_counts']['pos'] / nlp_total * 100)
-            percentage_neg = round(detail['sentiment_counts']['neg'] / nlp_total * 100)
-            percentage_neu = round(detail['sentiment_counts']['neu'] / nlp_total * 100)
+            percentage_pos = round(detail['sentiment_counts'].get('pos', 0) / nlp_total * 100)
+            percentage_neg = round(detail['sentiment_counts'].get('neg', 0) / nlp_total * 100)
+            percentage_neu = round(detail['sentiment_counts'].get('neu', 0) / nlp_total * 100)
 
             count_card(percentage_neu, 'neutral', 'info')
             count_card(percentage_pos, 'positive', 'success')
