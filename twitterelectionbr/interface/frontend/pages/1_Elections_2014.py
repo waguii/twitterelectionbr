@@ -50,7 +50,7 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        
+
         rel_path = '../static/dilma_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)

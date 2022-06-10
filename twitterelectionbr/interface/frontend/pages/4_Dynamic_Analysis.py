@@ -68,7 +68,8 @@ def custom_css():
     opacity: 0.5;
     display: block;
     font-size: 18px;
-  }</style>""", unsafe_allow_html=True)
+  }
+    </style>""", unsafe_allow_html=True)
 
 def clear_results():
     # Delete all the items in Session state
@@ -180,7 +181,7 @@ def main():
         if 'results_error' in st.session_state:
             st.error(st.session_state.results_error['error'])
     else:
-        st.button('🔍 Search for other candidate', on_click = clear_results)
+        st.button('🔍 New search', on_click = clear_results)
 
         #grid
         col1, col2 = st.columns([2, 1])

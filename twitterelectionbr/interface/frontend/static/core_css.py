@@ -9,7 +9,7 @@ def fontawesome():
 def sidebar():
     st.markdown(f'''
         <style>
-            section[data-testid="stSidebar"] .css-17ziqus {{width: 14rem;}}
+            section[data-testid="stSidebar"] .css-1siy2j7 {{width: 14rem;}}
             section.main .egzxvld2 {{padding: 0rem 1rem 10rem;}}
         </style>
     ''',unsafe_allow_html=True)

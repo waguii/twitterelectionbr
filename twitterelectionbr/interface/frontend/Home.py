@@ -2,12 +2,28 @@ from pyrsistent import s
 import streamlit as st
 from static.core_css import main_css
 
+def custom_css():
+    st.markdown("""<style>
+                .css-1fcdlhc{
+                    margin-inline: 8rem;
+                }
+                </style>""", unsafe_allow_html=True)
+
 # NOTE: This must be the first command in your app, and must be set only once
 st.set_page_config(layout="wide")
 
 def main():
-    st.markdown("<h1 style='text-align: center;'>Just Tweet It</h1>", unsafe_allow_html=True)
-    st.markdown("<h5 style='text-align: center;'>Le Wagon Brazil - Batch #869 </h5>", unsafe_allow_html=True)
+    st.markdown("""<div class="container">
+                    <div class="row justify-content-md-center">
+                        <h1>Just Tweet It</h1>
+                    </div>
+                   </div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="container">
+                    <div class="row justify-content-md-center">
+                        <h5>Le Wagon Brazil - <b>Batch #869</b></h5>
+                    </div>
+                   </div>""", unsafe_allow_html=True)
+
     st.markdown("""
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -24,9 +40,17 @@ def main():
                 </div>""",unsafe_allow_html=True)
 
     st.markdown("""
-                <div class="container">
+                <div class="container mt-5">
                     <div class="row justify-content-md-center">
-                        <h3 style='text-align: left;'>How does it work?</h3>""", unsafe_allow_html=True)
+                        <h3 style='text-align: left;'>How does it work?</h3>
+                    </div>
+                </div>""", unsafe_allow_html=True)
+
+
+    # st.markdown("""<div class="container">
+    #                 <div class="row justify-content-md-center">""", unsafe_allow_html=True)
+
+
 
     expander = st.expander('Collecting data')
 
@@ -79,4 +103,5 @@ def main():
 
 
 main_css()
+custom_css()
 main()
