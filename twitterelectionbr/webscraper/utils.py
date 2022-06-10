@@ -123,10 +123,10 @@ def download_lastest_tweets_to_profile(profile, limit = 100):
     #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {date}]') as bar:
     while len(tweets) < limit:
         try:
-            tweets.append(next(query_result_generator))
+            tweets.append(parse_tweet(next(query_result_generator)))
         except StopIteration:
             break
-    # print(len(tweets))
+    #print(tweets)
     return tweets
 
 def download_lastest_tweets_from_profile(profile, limit = 100):
@@ -143,7 +143,7 @@ def download_lastest_tweets_from_profile(profile, limit = 100):
     #with alive_bar(ctrl_c=False, title=f'Downloading tweets[{query} - {date}]') as bar:
     while len(tweets) < limit:
         try:
-            tweets.append(next(query_result_generator))
+            tweets.append(parse_tweet(next(query_result_generator)))
         except StopIteration:
             break
     # print(len(tweets))
@@ -156,7 +156,7 @@ def profile_info(username):
         result = userScraper._get_entity()
 
         result.created = result.created.strftime("%m/%d/%Y %H:%M:%S")
-        result.profileImageUrl= result.profileImageUrl.replace('_normal', '_400x400')
+        result.profile_img= result.profileImageUrl.replace('_normal', '_400x400')
     except:
         pass
 
