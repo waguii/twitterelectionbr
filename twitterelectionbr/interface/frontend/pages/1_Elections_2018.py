@@ -1,9 +1,8 @@
 import streamlit as st
-import numpy as np
-from components.bootstrap import card
-from static.core_css import main_css
 from PIL import Image
+from static.core_css import main_css
 import os
+import streamlit.components.v1 as components
 
 Title_html = """
     <style>
@@ -13,10 +12,13 @@ Title_html = """
           text-align: center;
           font-style: oblique;
           font-weight: bold;
+          }
 
     </style> """
 
 st.set_page_config(layout="wide")
+
+    
 
 def main():
 
@@ -24,11 +26,26 @@ def main():
     st.markdown(Title_html, unsafe_allow_html=True)
     #WRITE THE CODE BELOW
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+    
+    cola, colb, colc, cold, cole = st.columns(5)
+    with colb:
+        rel_path = '../static/candidates/haddad.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, use_column_width=False)
+        st.markdown("<h1 style='text-align: center; color: #FD2B49;'>Fernando Haddad</h1>", unsafe_allow_html=True)
+    
+    with cold:
+        rel_path = '../static/candidates/bolsonaro.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, use_column_width=False)
+        st.markdown("<h1 style='text-align: center; color: #279A55;'>Jair Bolsonaro</h1>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("<h1 style='text-align: center; color: #FD2B49;'>Fernando Haddad</h1>", unsafe_allow_html=True)
+        
         rel_path = '../static/haddad_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
@@ -97,7 +114,7 @@ def main():
 
 
     with col2:
-        st.markdown("<h1 style='text-align: center; color: #279A55;'>Jair Bolsonaro</h1>", unsafe_allow_html=True)
+        
         rel_path = '../static/bolsonaro_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)

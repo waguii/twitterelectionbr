@@ -13,6 +13,12 @@ Title_html = """
           text-align: center;
           font-style: oblique;
           font-weight: bold;
+          }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            }
 
     </style> """
 
@@ -21,13 +27,30 @@ st.set_page_config(layout="wide")
 def main():
 
     st.markdown("<h1 style='text-align: center;'>2014 Elections Analysis</h1>", unsafe_allow_html=True)
+    st.markdown(Title_html, unsafe_allow_html=True)
     #WRITE THE CODE BELOW
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+    
+    cola, colb, colc, cold, cole = st.columns(5)
+    with colb:
+        rel_path = '../static/candidates/dilma.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, use_column_width=False)
+        st.markdown("<h1 style='text-align: center; color: #FD2B49;'>Dilma Rousseff</h1>", unsafe_allow_html=True)
+    
+    with cold:
+        rel_path = '../static/candidates/aecio.png'
+        abs_file_path = os.path.join(script_dir, rel_path)
+        image = Image.open(abs_file_path)
+        st.image(image, use_column_width=False)
+        st.markdown("<h1 style='text-align: center; color: #279A55;'>Aécio Neves</h1>", unsafe_allow_html=True)
+
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("<h1 style='text-align: center; color: #FD2B49;'>Dilma Rousseff</h1>", unsafe_allow_html=True)
+        
         rel_path = '../static/dilma_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
@@ -96,7 +119,7 @@ def main():
 
 
     with col2:
-        st.markdown("<h1 style='text-align: center; color: #279A55;'>Aécio Neves</h1>", unsafe_allow_html=True)
+        
         rel_path = '../static/aecio_tweetTotalbySentiments.png'
         abs_file_path = os.path.join(script_dir, rel_path)
         image = Image.open(abs_file_path)
