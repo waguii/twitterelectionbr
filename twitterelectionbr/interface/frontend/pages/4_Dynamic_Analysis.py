@@ -180,7 +180,7 @@ def main():
         if 'results_error' in st.session_state:
             st.error(st.session_state.results_error['error'])
     else:
-        st.button('🔍 Search for other candidate', on_click = clear_results)
+        st.button('🔍 New search', on_click = clear_results)
 
         #grid
         col1, col2 = st.columns([2, 1])
@@ -189,7 +189,7 @@ def main():
         profile = st.session_state.results['profile']
         profile_analysis = st.session_state.results['profile_analysis']
         tweets_analysis = st.session_state.results['tweets_analysis']
-        raw_data = st.session_state.results['raw']
+        # raw_data = st.session_state.results['raw']
         detail = st.session_state.results['detail']
 
         with col1:
